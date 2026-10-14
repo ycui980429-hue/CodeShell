@@ -1,0 +1,11 @@
+# 仅提交发布与文档内容，应用源码不在本仓库
+*
+
+# 允许
+!README.md
+!CHANGELOG.md
+!LICENSE
+!安装说明.txt
+!assets/
+!assets/**
+!.gitignore

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <!-- 底板：深蓝渐变（比之前更暗，保证白色字形在顶部也清晰、整体更有分量） -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="30%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="45%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#153a8a"/>
+    </linearGradient>
+    <!-- 顶部到中部的柔光，只在最上方一点点，不再压住字形 -->
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="0%" y2="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <!-- 内描边：底板上沿一圈淡白线，模拟玻璃质感 -->
+    <linearGradient id="rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 圆角底板（macOS 图标圆角约为边长的 22.4%） -->
+  <rect width="1024" height="1024" rx="230" fill="url(#bg)"/>
+  <rect width="1024" height="1024" rx="230" fill="url(#sheen)"/>
+  <rect x="4" y="4" width="1016" height="1016" rx="226" fill="none" stroke="url(#rim)" stroke-width="4"/>
+
+  <!-- 终端提示符 >_ -->
+  <g fill="none" stroke="#ffffff" stroke-width="86"
+     stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="312,352 500,516 312,680"/>
+    <line x1="588" y1="680" x2="736" y2="680"/>
+  </g>
+</svg>
