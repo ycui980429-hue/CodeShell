@@ -5,7 +5,7 @@
   <p>
     <img alt="platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-3e8bff" />
     <img alt="electron" src="https://img.shields.io/badge/Electron-30-47848f" />
-    <img alt="version" src="https://img.shields.io/badge/version-1.10.3-00b894" />
+    <img alt="version" src="https://img.shields.io/badge/version-1.11.0-00b894" />
     <img alt="license" src="https://img.shields.io/badge/license-Proprietary-lightgrey" />
   </p>
 </div>
@@ -14,6 +14,27 @@
 让日常运维从「逐个登录、逐条敲命令」变成「**描述目标、审阅执行**」。
 
 > 所有连接与凭据只保存在本机（AES-256-CBC 加密落盘），不上传任何服务器。
+
+---
+
+## 快速看看
+
+<p align="center">
+  <img src="assets/screenshots/01-overview.png" alt="CodeShell 主界面" width="880" />
+</p>
+
+**演示视频**（18 秒：终端 → AI 助手 → 分屏 → 设置里调字号）：
+[assets/demo.mp4](assets/demo.mp4) ·
+[动图版 assets/demo.gif](assets/demo.gif)
+
+| | |
+|---|---|
+| <img src="assets/screenshots/02-terminal.png" alt="终端与实时状态" /> | <img src="assets/screenshots/03-ai-assistant.png" alt="AI 运维助手" /> |
+| **终端 · 实时状态条**<br>打开即采样 CPU / 内存 / 负载 / 全部分区磁盘 | **AI 运维助手**<br>任务模式自主执行，每条命令人工审批 |
+| <img src="assets/screenshots/04-database.png" alt="数据库管理" /> | <img src="assets/screenshots/05-batch-ops.png" alt="批量运维" /> |
+| **数据库**<br>10 种库 · 连上不自动打开库，自己选；支持搜索 | **批量运维**<br>广播 / 公钥下发 / 跨服直传 / 表同步 |
+| <img src="assets/screenshots/06-cross-transfer.png" alt="跨服务器传输" /> | <img src="assets/screenshots/08-themes.png" alt="三套主题" /> |
+| **跨服务器传输**<br>源左目标右，文件不经本机磁盘 | **三套外观**<br>深色 / 浅色 / 霓虹深色，另可整体缩放字号 |
 
 ---
 
@@ -56,7 +77,7 @@
 | **终端** | 本地 shell（Windows 用 PowerShell）· 分屏最多 4 格 · 同步输入 · 命令广播 |
 | **SSH** | 密码/私钥认证 · 跳板隧道 · 断线自动重连 · 实时状态条 · **通过服务器开 SOCKS5 代理拉起浏览器**（访问内网后台） |
 | **SFTP** | 上传/下载/新建目录/删除 · 拖拽上传 · 列排序 · 进度与取消 · **跨服务器直传** |
-| **数据库** | MySQL / MariaDB / PostgreSQL / 金仓 / Redis / SQLite / SQL Server / Oracle / **达梦** / ClickHouse |
+| **数据库** | MySQL / MariaDB / PostgreSQL / 金仓 / Redis / SQLite / SQL Server / Oracle / **达梦** / ClickHouse · 连上不自动展开库（自己选，支持搜索库名与表名） |
 | **SQL 编辑器** | Monaco · 全方言自动限行 · 结果分页 · 表格内增删改 · **导入 .sql 文件**（正确切分字符串/注释里的分号与 DELIMITER 存储过程）· 多格式导出 |
 | **Docker** | 容器/镜像/卷/网络 · **拉取镜像（带进度）** · **自定义私有仓库** · **Compose 编辑与启停** · 容器内终端与文件管理 · 本地 socket / TCP / SSH 隧道三种连接 |
 | **资产源** | 从 **git 仓库或本地文件** 同步资产清单（团队共享配置），支持全部导入格式 |
