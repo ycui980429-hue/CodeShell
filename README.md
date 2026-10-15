@@ -5,7 +5,7 @@
   <p>
     <img alt="platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-3e8bff" />
     <img alt="electron" src="https://img.shields.io/badge/Electron-30-47848f" />
-    <img alt="version" src="https://img.shields.io/badge/version-1.18.1-00b894" />
+    <img alt="version" src="https://img.shields.io/badge/version-1.19.0-00b894" />
     <img alt="license" src="https://img.shields.io/badge/license-Proprietary-lightgrey" />
   </p>
 </div>
@@ -97,6 +97,7 @@
 | `⌘ 1` ~ `⌘ 9` | 切换到第 N 个标签 |
 | `⌘ Home` | 回到首页 |
 | `⌘ /` | 快捷键速查 |
+| 终端内右键 | 复制 / 粘贴 / 全选 / 导出日志 / 清屏 / 文件传输 |
 | `⌘ Enter` | 执行 SQL（编辑器内） |
 | `⇧ ⌥ F` | 格式化 SQL（编辑器内） |
 
