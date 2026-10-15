@@ -19,18 +19,36 @@
 
 ## 快速看看
 
+### AI 执行：描述目标 → 自主拆解 → 逐条审批
+
 <p align="center">
-  <img src="assets/screenshots/01-overview.png" alt="CodeShell 主界面" width="880" />
+  <img src="assets/screenshots/00-ai-run.png" alt="AI 运维助手正在执行任务" width="900" />
 </p>
 
-**演示视频**（18 秒：终端 → AI 助手 → 分屏 → 设置里调字号）：
-[assets/demo.mp4](assets/demo.mp4) ·
-[动图版 assets/demo.gif](assets/demo.gif)
+说一句「排查 web-01 磁盘占用过高的问题，并清理可安全删除的过期日志」，
+AI 自己决定跑 `df -h` 看分区、用 `du` 定位到 `/var/log`，
+再提出删除 14 天前归档日志的命令 —— **每条命令都要你点「允许执行」**，
+命令与输出就显示在执行过程里。
+
+<br>
+
+### AI 结论：不是一堆输出，是一份小结
+
+<p align="center">
+  <img src="assets/screenshots/00-ai-done.png" alt="AI 给出的结构化结论" width="900" />
+</p>
+
+执行完给出**结论 + 判定依据 + 风险提示 + 后续建议**：
+哪一步验证了什么、这条命令会不会误删、下一步该改哪个配置，一目了然。
+
+<br>
+
+### 其它能力
 
 | | |
 |---|---|
-| <img src="assets/screenshots/02-terminal.png" alt="终端与实时状态" /> | <img src="assets/screenshots/03-ai-assistant.png" alt="AI 运维助手" /> |
-| **终端 · 实时状态条**<br>打开即采样 CPU / 内存 / 负载 / 全部分区磁盘 | **AI 运维助手**<br>任务模式自主执行，每条命令人工审批 |
+| <img src="assets/screenshots/01-overview.png" alt="CodeShell 主界面" /> | <img src="assets/screenshots/02-terminal.png" alt="终端与实时状态" /> |
+| **一个窗口装下运维日常**<br>终端 / SSH / SFTP / 数据库 / Docker / AI | **终端 · 实时状态条**<br>打开即采样 CPU / 内存 / 负载 / 全部分区磁盘 |
 | <img src="assets/screenshots/04-database.png" alt="数据库管理" /> | <img src="assets/screenshots/05-batch-ops.png" alt="批量运维" /> |
 | **数据库**<br>10 种库 · 连上不自动打开库，自己选；支持搜索 | **批量运维**<br>广播 / 公钥下发 / 跨服直传 / 表同步 |
 | <img src="assets/screenshots/06-cross-transfer.png" alt="跨服务器传输" /> | <img src="assets/screenshots/08-themes.png" alt="五套主题" /> |
