@@ -33,8 +33,8 @@
 | **终端 · 实时状态条**<br>打开即采样 CPU / 内存 / 负载 / 全部分区磁盘 | **AI 运维助手**<br>任务模式自主执行，每条命令人工审批 |
 | <img src="assets/screenshots/04-database.png" alt="数据库管理" /> | <img src="assets/screenshots/05-batch-ops.png" alt="批量运维" /> |
 | **数据库**<br>10 种库 · 连上不自动打开库，自己选；支持搜索 | **批量运维**<br>广播 / 公钥下发 / 跨服直传 / 表同步 |
-| <img src="assets/screenshots/06-cross-transfer.png" alt="跨服务器传输" /> | <img src="assets/screenshots/08-themes.png" alt="三套主题" /> |
-| **跨服务器传输**<br>源左目标右，文件不经本机磁盘 | **三套外观**<br>深色 / 浅色 / 霓虹深色，另可整体缩放字号 |
+| <img src="assets/screenshots/06-cross-transfer.png" alt="跨服务器传输" /> | <img src="assets/screenshots/08-themes.png" alt="五套主题" /> |
+| **跨服务器传输**<br>源左目标右，文件不经本机磁盘 | **五套外观**<br>深色 / 浅色 / 霓虹 / **暖色深色** / **柔和浅色**，另可整体缩放字号 |
 
 ---
 
@@ -83,7 +83,7 @@
 | **资产源** | 从 **git 仓库或本地文件** 同步资产清单（团队共享配置），支持全部导入格式 |
 | **资产导入导出** | CodeShell JSON / CSV / PuTTY .reg / MobaXterm ini / Xshell .xsh / SecureCRT / Tabby |
 | **MCP 服务端** | 设置里一键启动，把资产与只读执行能力以 Model Context Protocol 暴露给外部 agent |
-| **外观** | 深色 / 浅色 / **霓虹深色（终端命令/参数/字符串/数字分色）** / 跟随系统 |
+| **外观** | 深色 / 浅色 / **霓虹深色（分色显示）** / **暖色深色（护眼）** / **柔和浅色（纸感）** / 跟随系统 —— **终端配色随主题切换** |
 
 ## 快捷键
 
