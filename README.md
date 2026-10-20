@@ -5,7 +5,7 @@
   <p>
     <img alt="platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-3e8bff" />
     <img alt="electron" src="https://img.shields.io/badge/Electron-30-47848f" />
-    <img alt="version" src="https://img.shields.io/badge/version-1.27.0-00b894" />
+    <img alt="version" src="https://img.shields.io/badge/version-1.28.0-00b894" />
     <img alt="license" src="https://img.shields.io/badge/license-Proprietary-lightgrey" />
   </p>
 </div>
@@ -40,6 +40,34 @@ AI 自己决定跑 `df -h` 看分区、用 `du` 定位到 `/var/log`，
 
 执行完给出**结论 + 判定依据 + 风险提示 + 后续建议**：
 哪一步验证了什么、这条命令会不会误删、下一步该改哪个配置，一目了然。
+
+<br>
+
+### 安全基线检查：一次扫一批机器，出报告
+
+<p align="center">
+  <img src="assets/screenshots/09-security-scan.png" alt="安全基线检查列表" width="900" />
+</p>
+
+内置 **25 项只读检测**（SSH 加固 / 空口令 / 防火墙 / 口令策略 / SUID / 审计 / 补丁 / 磁盘…），
+选一批机器并发扫描，按机器列出台账：名称、地址、状态、**进度**、风险计数、评分与等级。
+列表可搜索、分页、编辑备注（标注环境/负责人）、移除条目，
+勾选任意几台还能随时重扫。
+
+<p align="center">
+  <img src="assets/screenshots/10-security-detail.png" alt="单台机器的检查明细" width="900" />
+</p>
+
+点进任意一台看**逐项明细**：当前值是什么、建议怎么改，可按等级（高危/中危/提示/合规）筛选。
+扫描全程只读，不修改目标系统；随时可取消，已完成的机器结果保留。
+
+<p align="center">
+  <img src="assets/screenshots/11-security-ai.png" alt="AI 解读扫描结果并给出整改方案" width="900" />
+</p>
+
+光有检查项还不够 —— 点「**AI 分析**」，把该机的问题清单交给模型，
+它会给出风险判断、按「紧急 / 重要 / 可选」分档的整改步骤（附可直接执行的命令）、以及验证方式。
+结论可一键复制，也能连同明细导出成 **PDF / Word** 报告，或导出 CSV 汇总。
 
 <br>
 
@@ -100,6 +128,7 @@ AI 自己决定跑 `df -h` 看分区、用 `du` 定位到 `/var/log`，
 | **Docker** | 以标签页打开（可与其他面板并看）· 容器/镜像/卷/网络 · **拉取镜像（带进度）** · **自定义私有仓库** · **Compose 编辑与启停** · 容器内终端与文件管理 · 本地 socket / TCP / SSH 隧道三种连接 |
 | **资产源** | 从 **git 仓库或本地文件** 同步资产清单（团队共享配置），支持全部导入格式 |
 | **资产导入导出** | CodeShell JSON / CSV / PuTTY .reg / MobaXterm ini / Xshell .xsh / SecureCRT / Tabby |
+| **安全基线检查** | **25 项只读检测** · 多机并发扫描（逐机进度）· 按等级分级与筛选 · **AI 分析整改方案** · 导出 PDF / Word / CSV |
 | **MCP 服务端** | 设置里一键启动，把资产与只读执行能力以 Model Context Protocol 暴露给外部 agent |
 | **外观** | 深色 / 浅色 / **霓虹深色（分色显示）** / **暖色深色（护眼）** / **柔和浅色（纸感）** / 跟随系统 —— **终端配色随主题切换** |
 
