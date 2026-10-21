@@ -5,7 +5,7 @@
   <p>
     <img alt="platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-3e8bff" />
     <img alt="electron" src="https://img.shields.io/badge/Electron-30-47848f" />
-    <img alt="version" src="https://img.shields.io/badge/version-1.37.1-00b894" />
+    <img alt="version" src="https://img.shields.io/badge/version-1.38.0-00b894" />
     <img alt="license" src="https://img.shields.io/badge/license-Proprietary-lightgrey" />
   </p>
 </div>
