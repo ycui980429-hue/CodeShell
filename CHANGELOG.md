@@ -2,6 +2,19 @@
 
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)：新功能 +0.1.0、修复/样式 +0.0.1、不兼容改动 +1.0.0。
 
+## v1.33.0
+
+### 改进
+
+- **AI 文件分析格式补全**：支持 `.doc`（旧版二进制 Word）、`.docx`、`.pdf`、`.html` / `.htm`；HTML 会先去掉 script/style/注释与标签、解码实体，只把正文交给 AI。
+- **不支持的文件弹提示框**：图片、PPT、压缩包、二进制等拖入或选中时，会弹出单按钮提示框说明支持范围（PDF / Word .doc/.docx / Excel / HTML / 文本类），不再只是行内小字提示。
+
+### 安装
+
+**macOS（Apple Silicon）**：`CodeShell-1.33.0-arm64.dmg` — 未签名公证，首次打开遇安全提示请在「系统设置 → 隐私与安全性」点「仍要打开」。
+
+**Windows（x64）**：`CodeShell-1.33.0-win-x64-setup.exe`（安装版）／`CodeShell-1.33.0-win-x64-portable.exe`（便携版）— 未代码签名，首次运行遇 SmartScreen 提示请点「更多信息 → 仍要运行」。
+
 ## v1.32.0
 
 ### 新增 / 改进
