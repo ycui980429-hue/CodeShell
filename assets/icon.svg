@@ -1,32 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
   <defs>
-    <!-- 底板：深蓝渐变（比之前更暗，保证白色字形在顶部也清晰、整体更有分量） -->
-    <linearGradient id="bg" x1="0%" y1="0%" x2="30%" y2="100%">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="45%" stop-color="#2563eb"/>
-      <stop offset="100%" stop-color="#153a8a"/>
+    <!-- 底板：墨色（与应用主色同源 #0b0d11），一层极轻的上下色阶给出厚度 -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#181d26"/>
+      <stop offset="100%" stop-color="#0a0c10"/>
     </linearGradient>
-    <!-- 顶部到中部的柔光，只在最上方一点点，不再压住字形 -->
-    <linearGradient id="sheen" x1="0%" y1="0%" x2="0%" y2="55%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <!-- 内描边：底板上沿一圈淡白线，模拟玻璃质感 -->
-    <linearGradient id="rim" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+    <!-- C 的字面：上缘受光、下缘略沉，给平涂的字母一点体积感 -->
+    <linearGradient id="ink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffc46b"/>
+      <stop offset="55%" stop-color="#ffb454"/>
+      <stop offset="100%" stop-color="#f0a343"/>
     </linearGradient>
   </defs>
 
   <!-- 圆角底板（macOS 图标圆角约为边长的 22.4%） -->
   <rect width="1024" height="1024" rx="230" fill="url(#bg)"/>
-  <rect width="1024" height="1024" rx="230" fill="url(#sheen)"/>
-  <rect x="4" y="4" width="1016" height="1016" rx="226" fill="none" stroke="url(#rim)" stroke-width="4"/>
+  <!-- 内缘一圈极淡的墨亮描边：把深底从 Dock 背景里分离出来 -->
+  <rect x="6" y="6" width="1012" height="1012" rx="224" fill="none"
+        stroke="#e9ecf1" stroke-opacity="0.07" stroke-width="6"/>
 
-  <!-- 终端提示符 >_ -->
-  <g fill="none" stroke="#ffffff" stroke-width="86"
-     stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="312,352 500,516 312,680"/>
-    <line x1="588" y1="680" x2="736" y2="680"/>
-  </g>
+  <!-- 大写 C：几何构造，端面**水平**（专业字形的关键 —— 直接把圆环切成一段弧，
+       端面会是径向斜切，看着就"歪"）。外半径 352、笔画 104、端面 y=356/668，
+       开口朝右，字形居中；用 evenodd 填出环与开口。 -->
+  <path fill="url(#ink)" fill-rule="evenodd"
+        d="M 827.5 356
+           A 352 352 0 1 0 827.5 668
+           L 704.8 668
+           A 248 248 0 1 1 704.8 356
+           Z"/>
 </svg>
