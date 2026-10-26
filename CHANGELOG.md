@@ -2,6 +2,26 @@
 
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)：新功能 +0.1.0、修复/样式 +0.0.1、不兼容改动 +1.0.0。
 
+## v1.43.3
+
+### 优化
+
+- **「＋」菜单的分类交互与「选择模型」完全一致**：
+  - 打开只看到三个分类，不预先展开任何一类（宽 168px）
+  - 鼠标移上去才在左边展开该类的功能（375px）
+  - 移出整个菜单就收起，回到只有分类列的状态
+- 二级里不再有「返回分类」按钮——宽屏鼠标移开即收起，那个按钮多余。
+- 抽屉拖窄（输入卡 < 470px）时仍用点击进入 + 「返回分类」，因为窄屏没有悬停语义；这种模式下鼠标移出不会收起内容。
+
+### 安装包
+
+| 平台 | 文件 | SHA-256 |
+|---|---|---|
+| macOS (Apple Silicon) | CodeShell-1.43.3-arm64.dmg | `4aa49fb1411cf0a69d0dda7def502c4319fda0c8744af1fbe66ab4c0bf04e598` |
+| macOS (zip) | CodeShell-1.43.3-arm64-mac.zip | `0618b1824f9c63581717cbe194e11d8b48505aba78ad9a89b45a76c9d2651cbc` |
+| Windows 安装版 | CodeShell-1.43.3-win-x64-setup.exe | `81de3c567da906f31a2259a09a8f9c6ee9b7cd332c5a90be2bec64d96e62fc3b` |
+| Windows 便携版 | CodeShell-1.43.3-win-x64-portable.exe | `a1a23861c456596da7dfdbd608e558f7bbc711b7cf08203d1fd23cef69b95cd2` |
+
 ## v1.43.2
 
 ### 优化
