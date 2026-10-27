@@ -2,6 +2,21 @@
 
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)：新功能 +0.1.0、修复/样式 +0.0.1、不兼容改动 +1.0.0。
 
+## v1.48.1
+
+### 修复
+
+- 清掉安全基线页宽表格遗留的评分徽章样式（`.scan-grade` / `.scan-table .scan-grade`）——新布局里评分已改用纯文字 + 等级色，这两条已无引用，留着容易让人误以为还在用。
+
+### 安装包
+
+| 平台 | 文件 | SHA-256 |
+|---|---|---|
+| macOS (Apple Silicon) | CodeShell-1.48.1-arm64.dmg | `2f16fd609ea91669647f2a339f97d9ade0d476e2bae4e16610a9193ab894aeff` |
+| macOS (zip) | CodeShell-1.48.1-arm64-mac.zip | `eb8497985f4093e0d81202239b1728d39ba8cca685cb34752fc09af2a6e539e0` |
+| Windows 安装版 | CodeShell-1.48.1-win-x64-setup.exe | `aadd12ba207256ee3389eadd814f7535e71f83b048bf8d9375929064ba3fcad6` |
+| Windows 便携版 | CodeShell-1.48.1-win-x64-portable.exe | `3941fc5cd58f1277b5b076b983adc6e1f706f9717a17780c683975e74dcac7b8` |
+
 ## v1.48.0
 
 ### 安全基线页面重构
