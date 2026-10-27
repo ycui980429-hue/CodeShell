@@ -2,6 +2,25 @@
 
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)：新功能 +0.1.0、修复/样式 +0.0.1、不兼容改动 +1.0.0。
 
+## v1.43.5
+
+### 优化
+
+- **「＋」改成经典二级菜单**：主菜单一列分类（添加到对话 / 引用上下文 / 对话记录，固定 172px），点分类后子菜单从右侧滑出、与该行顶对齐——和 macOS / Windows 菜单一个用法。
+  - 子菜单已打开时，鼠标扫过其它分类直接切换；再点同一分类只收子菜单，主菜单保留。
+  - Esc / 点外部 / 执行动作后关闭。
+  - 右侧放不下（抽屉拖窄到 300px）时子菜单翻到左缘滑出；底部超出视口时整块上移。
+- 子菜单能正常滑出的前提：整个菜单 portal 到 `body`（fixed 定位）。之前嵌在 AI 抽屉里，抽屉 `overflow: hidden` 且带入场 transform，向右滑出的面板会被裁掉——这是前两版（行内两栏、手风琴）做不成经典二级菜单的根本原因。
+
+### 安装包
+
+| 平台 | 文件 | SHA-256 |
+|---|---|---|
+| macOS (Apple Silicon) | CodeShell-1.43.5-arm64.dmg | `f70030499c410c4279728b0e1a9322b4a10760af5f478190d4d4ba9a4e1c4c58` |
+| macOS (zip) | CodeShell-1.43.5-arm64-mac.zip | `a8c2332d326f153320366c9e0cfa408240af1126e3380cff79dbf0fa1107ca5e` |
+| Windows 安装版 | CodeShell-1.43.5-win-x64-setup.exe | `5a68b730fe28c272293bbcbb80e9235dc1d6a7f1fc6f4d3c0a1bac5dfdaeab01` |
+| Windows 便携版 | CodeShell-1.43.5-win-x64-portable.exe | `d90b714f5c0762bf8d1c34891bb3dcf68b3e6a364b197826c4498f663e138f17` |
+
 ## v1.43.3
 
 ### 优化
