@@ -2,6 +2,43 @@
 
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)：新功能 +0.1.0、修复/样式 +0.0.1、不兼容改动 +1.0.0。
 
+## v1.50.2
+
+### 修复：数据库再查四类问题
+
+接着上一轮继续深挖，用真实 PostgreSQL 16 + MySQL 8 验证。
+
+**1. 反斜杠转义在非 MySQL 方言下写坏数据**
+代码里有 4 处转义实现，都写「把 `\` 双写」——这只对 MySQL 正确（它把反斜杠当转义符）。PostgreSQL（`standard_conforming_strings=on`）、SQLite、Oracle 里反斜杠是普通字符，双写会多出一个。
+
+实测 PG：输入 `C:\Users\test`（14 字符），库里存成 `C:\\Users\test`（15 字符）。Windows 路径、正则、JSON 片段都会被静默写坏。
+
+现在行编辑改成**参数化**（占位符按方言 `?` / `$1` / `:N`），值不再拼进 SQL。六种边界实测全对：反斜杠、单引号、两者混合、换行、emoji 中文。
+
+**2. 导出没有行数上限，大表会 OOM**
+单表导出走 `SELECT * FROM 表`，整表读进内存再拼成一个字符串。实测 50 万行表生成 **28.4MB / 462ms**，百万行级会把内存撑爆。
+
+现在单表导出封顶 **20 万行**（「导出单表」与「批量导出」同一口径），批量导出会在文件里注明「每表最多 N 行」。修后 50 万行表：11.2MB / 172ms。
+
+**3. Redis 键列表 N+1 查询**
+扫到 N 个 key 后，每个 key 单独发 `TYPE` + `TTL` —— 100 个 key 就是 200 次往返，跨机连接时整页卡好几秒。现在用 pipeline 一次发完，往返从 2N 降到 1。
+
+**4. 标识符引用实现不一致**
+`DatabaseManager` 那份会把 SQL Server 的 `]` 删掉（应为 `]]`，上一版已修）；确认 `dbMigrate` 与主进程两份实现是正确的，不再新增重复实现。
+
+### 已确认无问题的部分
+
+连接生命周期：`will-quit` 里逐连接限时关闭 + 整体硬超时，渲染层崩溃时连接由 OS 回收，无会话泄漏。
+
+### 安装包
+
+| 平台 | 文件 | SHA-256 |
+|---|---|---|
+| macOS (Apple Silicon) | CodeShell-1.50.2-arm64.dmg | `654946436af505aa5719c9c372091858ac079547a927831eecfb02ad56e6044c` |
+| macOS (zip) | CodeShell-1.50.2-arm64-mac.zip | `969b6f19d643a8da5f18b7a48587055cfa55cc41f0573dbf35d5e733423f6db6` |
+| Windows 安装版 | CodeShell-1.50.2-win-x64-setup.exe | `5595b0822b22395c4a363f0f9bbce1185b8e6fcb5cd67d12276dac24d5453bc1` |
+| Windows 便携版 | CodeShell-1.50.2-win-x64-portable.exe | `fcb2732be7ac62a6a52e1a4067f83c28536dd6fb834c0677d8e943d4d56337d8` |
+
 ## v1.50.1
 
 ### 修复：数据库模块五个真实 bug（含两处数据损坏级）
