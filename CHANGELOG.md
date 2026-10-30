@@ -2,6 +2,53 @@
 
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)：新功能 +0.1.0、修复/样式 +0.0.1、不兼容改动 +1.0.0。
 
+## v1.50.0
+
+### 数据库大表浏览提速
+
+用一张 **100 万行**的 MySQL 表实测后，定位到三个真实瓶颈 —— 都不是「数据库慢」：
+
+**1. 取页与 COUNT 串行**
+原来先等取页返回、再发 COUNT，两个往返相加。改成主进程一次处理内并行发出，耗时取较大者。
+
+**2. 盲目的 `ORDER BY 1`**
+点表浏览时不知道主键，一律按第 1 列排序。第 1 列没有索引时会退化成全表排序（实测 100 万行：有主键 200ms，无索引列 538ms）。现在先查各引擎的主键（MySQL / PostgreSQL / SQL Server / Oracle / 达梦 / ClickHouse 各自语法），有主键就按主键排。
+
+**3. 深翻页用 OFFSET**
+OFFSET 越深越慢，因为引擎要逐行数过前面所有行再丢弃。同一条查询实测：
+
+| 写法 | 耗时 |
+|---|---|
+| `ORDER BY id LIMIT 50 OFFSET 950000` | 192 ms |
+| `WHERE id > 950000 ORDER BY id LIMIT 50` | **0.8 ms** |
+
+所以新增**键集（seek）分页**：顺序翻页时带上一页末行的主键作锚点，完全不用 OFFSET。锚点只在「下一页 / 上一页」时存在，随机跳页仍走 OFFSET（语义正确优先）。
+
+**另外**：大表 `COUNT(*)` 超过 3 秒自动降级为引擎估算行数（MySQL 读 `information_schema.TABLES`、PG 读 `pg_class.reltuples`），界面显示「**约** N 行」而不是一直转圈。
+
+### 实测结果（100 万行，含时间列）
+
+| 操作 | 优化前 | 优化后 |
+|---|---|---|
+| 第 1 页 | 26 ms | 22 ms |
+| 第 100 页 | 33 ms | 28 ms |
+| 第 5000 页 | 160 ms | **72 ms** |
+| 第 19000 页（最深） | 240 ms | **20 ms** |
+
+### 过程中修掉的真实 bug
+
+- 主键识别取「第一个值」而非按字段名取：MySQL 的 `SHOW KEYS` 第一列是 `Table`（表名），导致生成 `ORDER BY \`big\`` 报 `Unknown column`。
+- 新接口的返回值嵌了一层 `result`，没走 `ipcSafeResult`，mysql2 的 `Date` 对象经 IPC 变成 `{}`（时间列全空）。
+
+### 安装包
+
+| 平台 | 文件 | SHA-256 |
+|---|---|---|
+| macOS (Apple Silicon) | CodeShell-1.50.0-arm64.dmg | `2cdc106ef275ef465163ac0f300db470ffb569ea8882baa9f8f0d39002ed402a` |
+| macOS (zip) | CodeShell-1.50.0-arm64-mac.zip | `c854ba6236bcd2a7bc96b06837fa2763868d5c0373f5f40310502a0237714fca` |
+| Windows 安装版 | CodeShell-1.50.0-win-x64-setup.exe | `7e4e8167861a29a6a6d5fdbde283121c89603e1945f659237e49a8ea88a78605` |
+| Windows 便携版 | CodeShell-1.50.0-win-x64-portable.exe | `8db71dd5194e1b6ffccdf00545e39b9f185ed3696aaba8f49f49d008771f94f4` |
+
 ## v1.49.0
 
 ### 新增：两个内置插件
