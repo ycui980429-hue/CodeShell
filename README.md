@@ -5,7 +5,7 @@
   <p>
     <img alt="platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-3e8bff" />
     <img alt="electron" src="https://img.shields.io/badge/Electron-30-47848f" />
-    <img alt="version" src="https://img.shields.io/badge/version-1.59.1-00b894" />
+    <img alt="version" src="https://img.shields.io/badge/version-1.59.2-00b894" />
     <img alt="license" src="https://img.shields.io/badge/license-Proprietary-lightgrey" />
   </p>
 </div>
@@ -79,6 +79,20 @@ AI 自己规划出任务清单、跑 `df -h` 看分区、用 `du` 定位到具�
 以前 CodeShell 只能把自己的能力**暴露**给别人；现在也能**使用**别人的工具 ——
 任何 MCP 服务器（K8s、云厂商、Prometheus、GitHub…）都能接进来，
 工具直接出现在 AI 的工具列表里。这类工具做的是 CodeShell 以外的事，**每次调用都会请你确认**。
+
+没有现成配置时给三条可点的示例（Kubernetes / GitHub / Prometheus），
+点一下直接填入，不用手抄命令行：
+
+<p align="center">
+  <img src="assets/screenshots/15-mcp-empty.png" alt="常见 MCP 服务器示例" width="900" />
+</p>
+
+反过来，「对外提供服务」是另一个方向 —— 让 Claude Desktop、Cursor 等外部 agent
+通过本机回环地址使用 CodeShell 的资产列表与只读执行能力：
+
+<p align="center">
+  <img src="assets/screenshots/16-mcp-server.png" alt="MCP 服务端设置" width="900" />
+</p>
 
 <br>
 
