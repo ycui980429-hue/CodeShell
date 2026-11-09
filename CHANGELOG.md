@@ -147,6 +147,29 @@ sandbox 渲染进程里根本不存在 —— 只要源表有字符串列就抛 
 - 既有回归：数据库 35 项、AI 内核 344 项全部通过
 - 双主题（深/浅）× 960/1280 宽度布局审计通过
 
+## 修复：fish 里 AI 的命令永远"执行中"，反复重试同一条
+
+现象：在 fish 里让 AI 跑命令，它不停重试最基础的 `pwd`，一直「等待 AI 决策」。
+
+原因：AI 执行完命令要靠一句哨兵 echo 拿退出码，而哨兵写的是 POSIX 的 `$?`。**`$?` 在 fish 里不是合法变量** —— fish 直接报 `$? is not the exit status. In fish, please use $status.`，整条 echo 失败，哨兵永不回显，AI 等满超时后重试，于是死循环。
+
+### 修复
+
+- 按 shell 家族分派哨兵写法（新增 `electron/ai/shellPayload.js`）
+- **fish** 用 `$status`；含管道时用 `$pipestatus` 判全段（fish 没有 `set -o pipefail`，且 `$status` 只取管道最后一段）
+- fish 的子 shell 用 `begin…end`（POSIX 的 `( … )` 在 fish 里是语法错误）
+- fish 跳过 bash 语法预检（`bash -n` 不认识 fish 语法）
+
+### 识别
+
+本地终端按实际 shell 路径判断；**SSH 远端终端新增探测** —— 登录 shell 由服务端 `/etc/passwd` 决定，可能是 fish，所以单独开一条通道跑 `basename "$SHELL"`，不往用户的交互式 shell 里塞探测命令。
+
+### 验证（真实 fish 4.9.3）
+
+- `echo hi`→0、`ls /nonexistent`→1、`true|true`→0、`false|true`→1
+- 打包版以 `SHELL=fish` 启动，日志确认 `shellKind: fish`，带哨兵的命令回显 `/Users/ycui` + `TOKX_0`
+- AI 内核回归 363 项（+19）、数据库回归 35 项
+
 ## 内置插件默认不安装 + 安装包瘦身
 
 ### 插件改为按需安装
